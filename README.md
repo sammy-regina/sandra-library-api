@@ -1,6 +1,6 @@
 # Sandra Library API
 
-[![Java CI with Maven](https://github.com/sammy-regina/sandra-library-api/actions/workflows/ci.yml/badge.svg)](https://github.com/sammy-regina/sandra-library-api/actions)
+[![Java CI with Maven](https://github.com/sammy-regina/sandra-library-api/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/sammy-regina/sandra-library-api/actions/workflows/ci.yml)
 
 API resiliente para gestão de bibliotecas escolares, focada em automação, qualidade de código e conformidade com LGPD.
 
