@@ -15,6 +15,6 @@ public record Book(
         String author,
 
         @Positive(message = " O número de pápinas deve ser maior que zero. ")
-        int pages
+        Integer pages
 ) {
 }
