@@ -59,4 +59,16 @@ public class BookEntity {
     public void setPages(Integer pages) {
         this.pages = pages;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private CategoryEntity category;
+
+        public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
+    }
 }
