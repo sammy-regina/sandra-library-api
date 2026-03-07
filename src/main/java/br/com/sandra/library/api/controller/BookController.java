@@ -1,8 +1,9 @@
 package br.com.sandra.library.api.controller;
 
-
 import br.com.sandra.library.domain.model.BookEntity;
 import br.com.sandra.library.domain.repository.BookRepository;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,9 +32,16 @@ public class BookController {
         return repository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<BookEntity> getById(@PathVariable UUID id) {
+        return repository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping
-    public BookEntity create(@RequestBody BookEntity book) {
-        return repository.save(book);
+    public ResponseEntity<BookEntity> create(@Valid @RequestBody BookEntity book) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(book));
     }
 
     @DeleteMapping("/{id}")
@@ -43,8 +51,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BookEntity> update(@PathVariable UUID id,
-                                             @RequestBody BookEntity bookDetails) {
+    public ResponseEntity<BookEntity> update(@PathVariable UUID id, @Valid @RequestBody BookEntity bookDetails) {
         return repository.findById(id)
                 .map(book -> {
                     book.setTitle(bookDetails.getTitle());
@@ -56,5 +63,6 @@ public class BookController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
+
 
 }
